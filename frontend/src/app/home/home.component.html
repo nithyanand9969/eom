@@ -1,0 +1,40 @@
+
+<h1 id="products_heading">Latest Products</h1>
+
+<section id="products" class="container mt-5">
+  <div class="row">
+    @if(products.length > 0)
+    {
+    <div
+      *ngFor="let product of products"
+      class="col-sm-12 col-md-6 col-lg-3 my-3"
+    >
+      <div class="card p-3 rounded">
+        <img
+          class="card-img-top mx-auto"
+          src="{{ 'assets' + product.images[0].image }}"
+        />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a routerLink = "/product/{{product._id}}">{{ product.name }}</a>
+          </h5>
+          <div class="ratings mt-auto">
+            <div class="rating-outer">
+              <div
+                class="rating-inner"
+                [ngStyle]="{ 'width': (product.ratings / 5) * 100 + '%' }"
+              ></div>
+            </div>
+          </div>
+          <p class="card-text">₹{{ product.price }}</p>
+          <a href="#" id="view_btn" class="btn btn-block">View Details</a>
+        </div>
+      </div>
+    </div>
+    }
+     @else 
+     {
+    <h3>No Product to display</h3>
+    }
+  </div>
+</section>
